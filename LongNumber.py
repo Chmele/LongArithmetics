@@ -167,3 +167,21 @@ class LongNumber:
             if (old_x-x) <= LongNumber('1'):
                 precise_enough = True
         return x
+
+    @staticmethod
+    def GCD(n1, n2):
+        while min(n1, n2) > LongNumber('0'):
+            if n1 >= n2: 
+                n1 %= n2
+                continue
+            if n2 > n1: 
+                n2 %= n1
+                continue
+        return max(n1, n2)
+    
+    @staticmethod
+    def GCD_n(*args):
+        res = args[0]
+        for a in args:
+            res = LongNumber.GCD(res, a)
+        return res
