@@ -25,8 +25,8 @@ class LongNumber:
             pass
 
     def __str__(self):
-        # return ''.join([str(i) for i in self.digits])
-        return str(self.digits)
+        return self.is_negative()*'-' + ''.join([str(abs(i)) for i in self.digits])
+        # return str(self.digits)
 
     def revert(self):
         """All digits *-1"""

@@ -22,11 +22,25 @@ class LongComparison:
             count += LongNumber('1')
             m %= a
             a, m = m, a
-        
-        
         return P[-2], count
 
     def solve(self):
         P_n, n = self.get_P_i()
         n -= LongNumber('1')
         return (LongNumber(-1)**n * P_n * self.b) % self.m, self.m
+
+    def combine(self, other):
+        gcd = LongNumber.GCD(self.m, other.m)
+        if gcd == LongNumber('1'):
+            return
+        else:
+            
+            if self.b % gcd == other.b % gcd:
+                new = LongComparison(LongNumber('1'), self.b % gcd, gcd)
+                self.m //= gcd
+                other.m //= gcd
+                self.b %= self.m
+                other.b %= other.m
+                return new
+            else:
+                print('conflict in system')
